@@ -8,16 +8,11 @@ defmodule NlwHeatElixir.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
       NlwHeatElixir.Repo,
-      # Start the Telemetry supervisor
       NlwHeatElixirWeb.Telemetry,
-      # Start the PubSub system
       {Phoenix.PubSub, name: NlwHeatElixir.PubSub},
-      # Start the Endpoint (http/https)
-      NlwHeatElixirWeb.Endpoint
-      # Start a worker by calling: NlwHeatElixir.Worker.start_link(arg)
-      # {NlwHeatElixir.Worker, arg}
+      NlwHeatElixirWeb.Endpoint,
+      NlwHeatElixir.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
