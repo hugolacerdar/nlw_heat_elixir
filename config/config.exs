@@ -17,6 +17,11 @@ config :nlw_heat_elixir, NlwHeatElixirWeb.Endpoint,
   pubsub_server: NlwHeatElixir.PubSub,
   live_view: [signing_salt: "lx/nek6A"]
 
+config :nlw_heat_elixir, NlwHeatElixir.Scheduler,
+  jobs: [
+    {"* * * * *", {NlwHeatElixir.Tags.Count, :call, []}}
+  ]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
